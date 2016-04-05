@@ -1,0 +1,137 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Johnstone RSVP</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Kurale|Raleway:400,500' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+</head>
+
+<body>
+
+  <body>
+
+    <div id="main">
+
+        <div class="header-container pure-u-24-24">
+          <img class="pure-img pure-u-8-24 johnstone-logo" src="JS_square_logo.png">
+        </div>
+
+          <h2 class="rsvp-header">Johnstone Support Ticket</h2>
+
+          <form id="ticket-form" name="ticket-form" class="pure-form pure-form-stacked pure-u-18-24">
+
+            <div class="form-input">
+              <label>Branch</label>
+              <!-- <input id="branch-name" name="banch-name" maxlength="30" value="" type="text" placeholder="Branch Name" required> -->
+              <select id="branch-name">
+                <option>Augusta</option>
+                <option>Fayetteville</option>
+                <option>Monroe</option>
+                <option>Murrels Inlet</option>
+              </select>
+            </div>
+
+            <div class="form-input">
+              <label>Contact Name</label>
+              <input id="contact-name" name="contact-name" maxlength="50" value="" type="text" placeholder="Contact Name" required>
+            </div>
+
+            <div class="form-input">
+              <label>Email</label>
+              <input id="contact-email" name="contact-email" maxlength="70" value="" type="text" placeholder="Contact Email" required>
+            </div>
+
+            <div class="form-input">
+              <label>Phone</label>
+              <input id="customer-phone" name="customer-phone" maxlength="10" value="" type="text" placeholder="0000000000">
+            </div>
+
+            <div class="form-input">
+              <label>Please Describe the Issue</label>
+              <textarea id="description" name="textarea" rows="10" cols="50" value="" required></textarea>
+            </div>
+
+            <div class="form-input">
+              <input id="rsvp-submit" class="pure-button" type="submit" value="Submit Support Ticket" />
+            </div>
+
+          </form>
+      </div>
+
+      <div id="thank-you" class="hidden">
+        <h2>Thank you submitting your request for support.<br>Please allow some time for response.</h2>
+      </div>
+
+  <script type="text/javascript">
+    Parse.initialize("5i1KdSq5hvNgs2LtS6ji9v2Q4NLuuP91xO9ZZ4Nn", "q4RbrNXiHwyZBtZNLHbhM7nkvjYniigTrNyF6Ub5");
+
+  var Ticket = Parse.Object.extend("Ticket");
+
+  $("#ticket-form").submit(function(event){
+      event.preventDefault();
+        var contactName = $("#contact-name").val();
+        var email = $("#contact-email").val();
+        var branch = $("#branch-name").val();
+        var phone = $("#customer-phone").val();
+        var description = $("#description").val();
+
+        var newTicket = new Ticket();
+        newTicket.set("contactName", contactName);
+        newTicket.set("branch", branch);
+        newTicket.set("phone", phone);
+        newTicket.set("description", description);
+
+        newTicket.save({
+          success: function (){
+            console.log("saved");
+            $("#ticket-form").hide();
+            $("#thank-you").removeClass("hidden");
+
+          }, error: function(error){
+            console.log("Error:"+error.message);
+          }
+        });
+
+    });
+
+
+// var Mailgun = require('mailgun');
+// Mailgun.initialize('sandboxd2064f0b8f7a41cd8ec4a3b3288ae134.mailgun.org', 'pubkey-cc5d6cd3d56ff18849a5fc4de3235973');
+//
+// Parse.Cloud.beforeSave("CommentObject", function(request, response) {
+//
+// 	var text = "Support Ticket\n" +
+// 		"Branch: "+request.object.get("branch") + "\n"+
+// 		"Name: "+request.object.get("contactName") + "\n"+
+// 		"Email: "+request.object.get("email") + "\n\n"+
+//     "Phone: "+request.object.get("phone") + "\n\n"+
+// 		"Description:\n" + request.object.get("description");
+//
+// 	Mailgun.sendEmail({
+// 			to: "kyle.richardson@johnstonesupply.com",
+// 			from: request.object.get("email"),
+// 			subject: "Johnstone Support Request - " + request.object.get("description"),
+// 			text: text
+// 		}, {
+// 		success: function(httpResponse) {
+// 			response.success();
+// 		},
+// 		error: function(httpResponse) {
+// 			console.error(httpResponse);
+// 			response.error("Something went wrong");
+// 		}
+// 	});
+//
+// });
+
+  </script>
+</body>
+
+</html>
