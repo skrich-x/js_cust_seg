@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Customer Segmentation": {
+      "applicationId": "CTe7IvPIO7sLsKdCMkgHkBdm0NgHHeZaKlGDWo5d"
+    },
+    "_default": {
+      "link": "Customer Segmentation"
+    }
+  }
+}
