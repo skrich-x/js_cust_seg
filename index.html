@@ -25,7 +25,7 @@
 
           <h2 class="rsvp-header">Johnstone Customer Information</h2>
 
-          <form id="ticket-form" name="ticket-form" class="pure-form pure-form-stacked pure-u-18-24">
+          <form id="customer-form" name="customer-form" class="pure-form pure-form-stacked pure-u-18-24">
 
             <div class="form-input">
               <label>Branch</label>
@@ -80,6 +80,7 @@
                 <option>Government facility</option>
               </select>
             </div>
+
             <div class="form-input">
               <label>How many total installers and technicians are on staff?</label>
               <select id="company-installers">
@@ -91,7 +92,41 @@
                 <option>None</option>
               </select>
             </div>
-          
+            <!-- Input entries for Trade Companies only go here -->
+            <h3 class="trade-input">For Trade Companies Only:</h3>
+
+            <div class="form-input">
+              <label>What is your company’s primary business focus?</label>
+              <select id="company-primary">
+                <option>Not a Trade Company</option>
+                <option>Residential</option>
+                <option>Light Commercial</option>
+                <option>Refrigeration</option>
+                <option>Plumbing</option>
+                <option>Mechanical</option>
+                <option>None</option>
+              </select>
+            </div>
+
+            <div class="form-input">
+              <label>What is your company’s secondary business focus?</label>
+              <select id="company-secondary">
+                <option>Not a Trade Company</option>
+                <option>Residential</option>
+                <option>Light Commercial</option>
+                <option>Refrigeration</option>
+                <option>Plumbing</option>
+                <option>Mechanical</option>
+                <option>None</option>
+              </select>
+            </div>
+
+            <div class="form-input">
+              <label for="option-one" class="pure-checkbox"><input id="option-one" type="checkbox" value="">Equipment installation in new construction</label>
+              <label for="option-two" class="pure-checkbox"><input id="option-two" type="checkbox" value="">Equipment installation / retrofit in existing buildings</label>
+              <label for="option-three" class="pure-checkbox"><input id="option-three" type="checkbox" value="">Repair and maintenance</label>
+            </div>
+
             <div class="form-input">
               <input id="rsvp-submit" class="pure-button" type="submit" value="Submit Support Ticket" />
             </div>
