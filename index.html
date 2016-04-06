@@ -29,7 +29,6 @@
 
             <div class="form-input">
               <label>Branch</label>
-              <!-- <input id="branch-name" name="banch-name" maxlength="30" value="" type="text" placeholder="Branch Name" required> -->
               <select id="branch-name">
                 <option>Augusta</option>
                 <option>Fayetteville</option>
@@ -40,7 +39,7 @@
 
             <div class="form-input">
               <label>Company Name</label>
-              <input id="comany-name" name="company-name" maxlength="50" value="" type="text" placeholder="Company Name" required>
+              <input id="company-name" name="company-name" maxlength="50" value="" type="text" placeholder="Company Name" required>
             </div>
 
             <div class="form-input">
@@ -122,13 +121,13 @@
             </div>
 
             <div class="form-input">
-              <label for="option-one" class="pure-checkbox"><input id="option-one" type="checkbox" value="">Equipment installation in new construction</label>
-              <label for="option-two" class="pure-checkbox"><input id="option-two" type="checkbox" value="">Equipment installation / retrofit in existing buildings</label>
-              <label for="option-three" class="pure-checkbox"><input id="option-three" type="checkbox" value="">Repair and maintenance</label>
+              <label for="new-construction" class="pure-checkbox"><input id="new-construction" type="checkbox" value="Installation/New Construction">Equipment installation in new construction</label>
+              <label for="retrofit" class="pure-checkbox"><input id="retrofit" type="checkbox" value="Installation/Retrofit">Equipment installation / retrofit in existing buildings</label>
+              <label for="repair" class="pure-checkbox"><input id="repair" type="checkbox" value="Repair/Maintenance">Repair and maintenance</label>
             </div>
 
             <div class="form-input">
-              <input id="rsvp-submit" class="pure-button" type="submit" value="Submit Support Ticket" />
+              <input id="customer-submit" class="pure-button" type="submit" value="Submit Support Ticket" />
             </div>
 
           </form>
@@ -139,28 +138,49 @@
       </div>
 
   <script type="text/javascript">
-    Parse.initialize("5i1KdSq5hvNgs2LtS6ji9v2Q4NLuuP91xO9ZZ4Nn", "q4RbrNXiHwyZBtZNLHbhM7nkvjYniigTrNyF6Ub5");
+    Parse.initialize("CTe7IvPIO7sLsKdCMkgHkBdm0NgHHeZaKlGDWo5d", "6YgTyO839OLfAEZTY2mt8E3rDMtFQ2v8yCn0NGYj");
 
-  var Ticket = Parse.Object.extend("Ticket");
+  var Customer = Parse.Object.extend("Customer");
 
-  $("#ticket-form").submit(function(event){
+  $("#customer-form").submit(function(event){
       event.preventDefault();
-        var contactName = $("#contact-name").val();
-        var email = $("#contact-email").val();
         var branch = $("#branch-name").val();
-        var phone = $("#customer-phone").val();
-        var description = $("#description").val();
+        var companyName = $("#company-name").val();
+        var accountNumber = $("#account-number").val();
+        var customerName = $("#customer-name").val();
+        var customerTitle = $("#customer-title").val();
+        var customerEmail = $("#customer-email").val();
+        var customerOfficePhone = $("#customer-office-phone").val();
+        var customerMobilePhone = $("#customer-mobile-phone").val();
+        var companyDescription = $("#company-description").val();
+        var companyInstallers = $("#company-installers").val();
+        var companyPrimary = $("#company-primary").val();
+        var companySecondary = $("#company-secondary").val();
+        var newConstruction = $("#new-construction").val();
+        var retrofit = $("#retrofit").val();
+        var repair = $("#repair").val();
 
-        var newTicket = new Ticket();
-        newTicket.set("contactName", contactName);
-        newTicket.set("branch", branch);
-        newTicket.set("phone", phone);
-        newTicket.set("description", description);
+        var newCustomer = new Customer();
+        newCustomer.set("branch", branch);
+        newCustomer.set("companyName", companyName);
+        newCustomer.set("accountNumber", accountNumber);
+        newCustomer.set("customerName", customerName);
+        newCustomer.set("customerTitle", customerTitle);
+        newCustomer.set("customerEmail", customerEmail);
+        newCustomer.set("customerOfficePhone", customerOfficePhone);
+        newCustomer.set("customerMobilePhone", customerMobilePhone);
+        newCustomer.set("companyDescription", companyDescription);
+        newCustomer.set("companyInstallers", companyInstallers);
+        newCustomer.set("companyPrimary", companyPrimary);
+        newCustomer.set("companySecondary", companySecondary);
+        newCustomer.set("newConstruction", newConstruction);
+        newCustomer.set("retrofit", retrofit);
+        newCustomer.set("repair", repair);
 
-        newTicket.save({
+        newCustomer.save({
           success: function (){
             console.log("saved");
-            $("#ticket-form").hide();
+            $("#customer-form").hide();
             $("#thank-you").removeClass("hidden");
 
           }, error: function(error){
