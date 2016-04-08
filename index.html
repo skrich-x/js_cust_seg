@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Johnstone RSVP</title>
+  <title>Johnstone Customer Info</title>
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
@@ -85,7 +85,7 @@
               <select id="company-installers">
                 <option>25 or more</option>
                 <option>10 to 24</option>
-                <option>6 to 9<option>
+                <option>6 to 9</option>
                 <option>2 to 5</option>
                 <option>1</option>
                 <option>None</option>
@@ -121,6 +121,7 @@
             </div>
 
             <div class="form-input">
+              <label>Which of the following types of work does your company do? (check all that apply)<label>
               <label for="new-construction" class="pure-checkbox"><input id="new-construction" type="checkbox" value="Installation/New Construction">Equipment installation in new construction</label>
               <label for="retrofit" class="pure-checkbox"><input id="retrofit" type="checkbox" value="Installation/Retrofit">Equipment installation / retrofit in existing buildings</label>
               <label for="repair" class="pure-checkbox"><input id="repair" type="checkbox" value="Repair/Maintenance">Repair and maintenance</label>
@@ -134,58 +135,58 @@
       </div>
 
       <div id="thank-you" class="hidden">
-        <h2>Thank you submitting your request for support.<br>Please allow some time for response.</h2>
+        <h2>Thank you for helping us keep your information up to date!</h2>
       </div>
   <script type="text/javascript">
     Parse.initialize("CTe7IvPIO7sLsKdCMkgHkBdm0NgHHeZaKlGDWo5d", "6YgTyO839OLfAEZTY2mt8E3rDMtFQ2v8yCn0NGYj");
 
-  var Customer = Parse.Object.extend("Customer");
+    var Customer = Parse.Object.extend("Customer");
 
-  $("#customer-form").submit(function(event){
-      event.preventDefault();
-        var branch = $("#branch-name").val();
-        var companyName = $("#company-name").val();
-        var accountNumber = $("#account-number").val();
-        var customerName = $("#customer-name").val();
-        var customerTitle = $("#customer-title").val();
-        var customerEmail = $("#customer-email").val();
-        var customerOfficePhone = $("#customer-office-phone").val();
-        var customerMobilePhone = $("#customer-mobile-phone").val();
-        var companyDescription = $("#company-description").val();
-        var companyInstallers = $("#company-installers").val();
-        var companyPrimary = $("#company-primary").val();
-        var companySecondary = $("#company-secondary").val();
-        var newConstruction = $("#new-construction").val();
-        var retrofit = $("#retrofit").val();
-        var repair = $("#repair").val();
+    $("#customer-form").submit(function(event){
+        event.preventDefault();
+          var branch = $("#branch-name").val();
+          var companyName = $("#company-name").val();
+          var accountNumber = $("#account-number").val();
+          var customerName = $("#customer-name").val();
+          var customerTitle = $("#customer-title").val();
+          var customerEmail = $("#customer-email").val();
+          var customerOfficePhone = $("#customer-office-phone").val();
+          var customerMobilePhone = $("#customer-mobile-phone").val();
+          var companyDescription = $("#company-description").val();
+          var companyInstallers = $("#company-installers").val();
+          var companyPrimary = $("#company-primary").val();
+          var companySecondary = $("#company-secondary").val();
+          var newConstruction = $("#new-construction").val();
+          var retrofit = $("#retrofit").val();
+          var repair = $("#repair").val();
 
-        var newCustomer = new Customer();
-        newCustomer.set("branch", branch);
-        newCustomer.set("companyName", companyName);
-        newCustomer.set("accountNumber", accountNumber);
-        newCustomer.set("customerName", customerName);
-        newCustomer.set("customerTitle", customerTitle);
-        newCustomer.set("customerEmail", customerEmail);
-        newCustomer.set("customerOfficePhone", customerOfficePhone);
-        newCustomer.set("customerMobilePhone", customerMobilePhone);
-        newCustomer.set("companyDescription", companyDescription);
-        newCustomer.set("companyInstallers", companyInstallers);
-        newCustomer.set("companyPrimary", companyPrimary);
-        newCustomer.set("companySecondary", companySecondary);
-        newCustomer.set("newConstruction", newConstruction);
-        newCustomer.set("retrofit", retrofit);
-        newCustomer.set("repair", repair);
+          var newCustomer = new Customer();
+          newCustomer.set("branch", branch);
+          newCustomer.set("companyName", companyName);
+          newCustomer.set("accountNumber", accountNumber);
+          newCustomer.set("customerName", customerName);
+          newCustomer.set("customerTitle", customerTitle);
+          newCustomer.set("customerEmail", customerEmail);
+          newCustomer.set("customerOfficePhone", customerOfficePhone);
+          newCustomer.set("customerMobilePhone", customerMobilePhone);
+          newCustomer.set("companyDescription", companyDescription);
+          newCustomer.set("companyInstallers", companyInstallers);
+          newCustomer.set("companyPrimary", companyPrimary);
+          newCustomer.set("companySecondary", companySecondary);
+          newCustomer.set("newConstruction", newConstruction);
+          newCustomer.set("retrofit", retrofit);
+          newCustomer.set("repair", repair);
 
-        newCustomer.save({
-          success: function (){
-            console.log("saved");
-            $("#customer-form").hide();
-            $("#thank-you").removeClass("hidden");
+          newCustomer.save({
+            success: function (){
+              console.log("saved");
+              $("#customer-form").hide();
+              $("#thank-you").removeClass("hidden");
 
-          }, error: function(error){
-            console.log("Error:"+error.message);
-          }
-        });
+            }, error: function(error){
+              console.log("Error:"+error.message);
+            }
+          });
     });
 
     // var Mailgun = require('mailgun');
